@@ -1,4 +1,4 @@
-package com.example.myfirstapp;
+package com.group_srinivasan.scrumui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

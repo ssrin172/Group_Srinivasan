@@ -1,4 +1,4 @@
-package com.example.myfirstapp;
+package com.group_srinivasan.scrumui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -11,7 +11,7 @@ public class LoginGui extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Login-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("LoginGui-view.fxml"));
 
         Scene scene= new Scene(root, 600, 400);
 
@@ -24,3 +24,4 @@ public class LoginGui extends Application {
         launch(args);
     }
 }
+
