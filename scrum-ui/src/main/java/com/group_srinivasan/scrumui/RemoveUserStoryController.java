@@ -1,4 +1,4 @@
-package com.example.myfirstapp;
+package com.group_srinivasan.scrumui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
