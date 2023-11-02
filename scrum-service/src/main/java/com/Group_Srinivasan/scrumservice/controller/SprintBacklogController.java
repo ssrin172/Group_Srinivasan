@@ -1,0 +1,33 @@
+package com.Group_Srinivasan.scrumservice.controller;
+
+
+import com.Group_Srinivasan.scrumservice.model.SprintBacklog;
+import com.Group_Srinivasan.scrumservice.service.SprintBacklogService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/SprintBacklog")
+public class SprintBacklogController {
+    @Autowired
+    private SprintBacklogService sprintBacklogService;
+    @PostMapping("/add")
+    public String add(@RequestBody SprintBacklog sprintBacklog){
+        sprintBacklogService.saveSprintBacklog(sprintBacklog);
+        return "New User Story added to product Backlog";
+    }
+
+    @GetMapping("/getAll")
+    public List<SprintBacklog> getAllSprintBacklog()  {
+        return sprintBacklogService.getAllSprintBacklog();
+    }
+
+    @DeleteMapping("/deleteAll")
+    public void deleteAllSprintBacklog(){
+        sprintBacklogService.deleteAllSprintBacklog();
+    }
+
+
+}
