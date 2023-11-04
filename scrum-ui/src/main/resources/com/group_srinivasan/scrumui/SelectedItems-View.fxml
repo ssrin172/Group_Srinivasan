@@ -8,7 +8,7 @@
 <?import javafx.scene.control.Button?>
 <VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10"
       fx:controller="com.group_srinivasan.scrumui.SelectedItemsController">
-    <Label text="Selected Items:" />
+    <Label text="Product Backlog:" />
     <ListView fx:id="selectedItemsListView" />
     <Button text="Remove User story" ></Button>
 </VBox>
