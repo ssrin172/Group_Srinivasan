@@ -7,5 +7,5 @@
 <VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10"
       fx:controller="com.group_srinivasan.scrumui.UserStoriesController">
     <ListView fx:id="dataListView" />
-    <Button text="Open Selected Items" onAction="#openSelectedItems"/>
+    <Button text="Open Selected Items" onAction="#openSelectedItems"/> <!-- Add a button -->
 </VBox>

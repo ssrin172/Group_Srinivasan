@@ -6,10 +6,10 @@ import java.util.List;
 
 public class UserStoriesData {
     public static class DataItem {
-        private final String id;
-        private final String bvd;
+        public final String id;
+        public final String bvd;
 
-        public DataItem(@JsonProperty("id") String id, @JsonProperty("bvd") String bvd) {
+        public DataItem(@JsonProperty("id") String id, @JsonProperty("bv") String bvd) {
             this.id = id;
             this.bvd = bvd;
         }

@@ -8,21 +8,19 @@ import java.util.List;
 
 
 
-public class SelectedItemsController {
+    public class SelectedItemsController {
 
-    @FXML
-    private VBox selectedItemsView;
+        @FXML
+        private VBox selectedItemsView;
 
-    @FXML
-    private ListView<String> selectedItemsListView;
+        @FXML
+        private ListView<String> selectedItemsListView;
 
-    @FXML
-    public void setSelectedItems(List<UserStoriesData.DataItem> selectedItems) {
-        System.out.println(selectedItems);
-        for (UserStoriesData.DataItem item : selectedItems) {
-            selectedItemsListView.getItems().add(item.getId() + " - " + item.getBvd());
+        @FXML
+        public void setSelectedItems(List<UserStoriesData.DataItem> selectedItems) {
+            System.out.println(selectedItems);
+            for (UserStoriesData.DataItem item : selectedItems) {
+                selectedItemsListView.getItems().add(item.getId() + " - " + item.getBvd());
+            }
         }
-    }
-
-
 }

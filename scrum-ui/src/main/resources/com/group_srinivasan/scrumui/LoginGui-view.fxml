@@ -16,7 +16,7 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.group_srinivasan.scrumui.LoginGuiController">
     <center>
-        <VBox alignment="CENTER" prefHeight="311.0" prefWidth="389.0" spacing="10.0" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" prefHeight="311.0" prefWidth="389.0" spacing="10.0" BorderPane.alignment="CENTER" >
             <children>
                 <Label text="User Sign-up" />
                 <TextField fx:id="usernameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Username" />
