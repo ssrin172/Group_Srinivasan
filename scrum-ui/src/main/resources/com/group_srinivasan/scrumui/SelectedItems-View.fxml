@@ -5,9 +5,10 @@
 
 <?import javafx.scene.control.ListView?>
 
-
+<?import javafx.scene.control.Button?>
 <VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10"
       fx:controller="com.group_srinivasan.scrumui.SelectedItemsController">
     <Label text="Selected Items:" />
     <ListView fx:id="selectedItemsListView" />
+    <Button text="Remove User story" ></Button>
 </VBox>
