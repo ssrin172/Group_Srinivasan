@@ -6,9 +6,13 @@
 <?import javafx.scene.control.ListView?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10"
       fx:controller="com.group_srinivasan.scrumui.SelectedItemsController">
-    <Label text="Product Backlog:" />
+    <Label text="Product Backlog" />
     <ListView fx:id="selectedItemsListView" />
-    <Button text="Remove User story" ></Button>
+    <TextField  promptText="Enter sprint length" />
+    <TextField  promptText="Enter number of sprints" />
+    <Button text="Remove User Story" onAction="#setSelectedItems" />
+    <Button text="Add User Story to Sprint Backlog" onAction="#setSelectedItems" />
 </VBox>
