@@ -26,11 +26,25 @@ public class SelectRoleController {
                 Scene scene = new Scene(root, 400, 200);
 
                 stage.setScene(scene);
-                stage.setTitle("Select User Stories");
+                stage.setTitle("Select User Stories for Product Backlog");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (selectedRole != null) {
+        }else if( selectedRole.equals("Scrum Master")){
+            try {
+                //change the view.fxml file to the scrum master's GUI
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("UserStoryScrumMaster-view.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root, 400, 200);
+
+                stage.setScene(scene);
+                stage.setTitle("Select User Stories for Sprint Backlog");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else if (selectedRole != null) {
             System.out.println("Selected Role: " + selectedRole);
         } else {
             System.out.println("Please select a role.");

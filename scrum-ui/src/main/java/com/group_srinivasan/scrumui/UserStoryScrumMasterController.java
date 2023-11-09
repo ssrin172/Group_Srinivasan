@@ -16,26 +16,24 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
-import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.*;
 
-public class UserStoriesController {
+public class UserStoryScrumMasterController {
 
 
     @FXML
-    private ListView<UserStoriesData.DataItem> dataListView;
+    private ListView<UserStoriesData.DataItem> productBacklogListView;
 
-    private Map<UserStoriesData.DataItem, CheckBox> itemCheckBoxMap = new HashMap<>(); // Define itemCheckBoxMap
-
+    private Map<UserStoriesData.DataItem, CheckBox> itemCheckBoxMap2 = new HashMap<>(); // Define itemCheckBoxMap
+//Change the itemCheckBoxMap variable name to itemCheckboxMap2 for new checkboxes to select.
     public void initialize() {
         // Call the API asynchronously to retrieve data
-        fetchDataFromApiAsync();
+        fetchDataFromApiAsync2();
 
         // Set the custom cell factory for the ListView
-        dataListView.setCellFactory(getCellFactory());
-        dataListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        productBacklogListView.setCellFactory(getCellFactory());
+        productBacklogListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 //        for (UserStoriesData.DataItem item : dataListView.getItems()) {
 //            CheckBox checkBox = new CheckBox();
 //            itemCheckBoxMap.put(item, checkBox);
@@ -44,42 +42,39 @@ public class UserStoriesController {
 
     }
 
-    private void fetchDataFromApiAsync() {
+//    No need to fetch the user stories from the API, here we will be fetching the past checked user stories
+    private void fetchDataFromApiAsync2() {
         // Asynchronous data fetching logic (GET request)
         new Thread(() -> {
             try {
-                // Replace this with your actual API endpoint URL
-                String apiUrl = "http://localhost:8080/UserStoryBacklog/getAll";
+                String apiUrl = "http://localhost:8080/ProductBacklog/getAll";
                 URL url = new URL(apiUrl);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
-                // Handle HTTP response codes, timeouts, etc.
                 int responseCode = connection.getResponseCode();
                 if (responseCode == 200) {
 
                     // If the request was successful, parse the JSON response
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    UserStoriesData.DataItem[] dataItems = objectMapper.readValue(connection.getInputStream(), UserStoriesData.DataItem[].class);
-                    List<UserStoriesData.DataItem> dataList = Arrays.asList(dataItems);
+                    ObjectMapper objectMapper2 = new ObjectMapper();
+                    UserStoriesData.DataItem[] dataItems2 = objectMapper2.readValue(connection.getInputStream(), UserStoriesData.DataItem[].class);
+                    List<UserStoriesData.DataItem> dataList2 = Arrays.asList(dataItems2);
 
                     // Update UI with retrieved data on the JavaFX Application Thread
-                    dataListView.getItems().addAll(dataList);
+                    productBacklogListView.getItems().addAll(dataList2);
 
                 } else {
-                    // Handle API error response
                     System.out.println("API request failed with response code: " + responseCode);
                 }
 
                 connection.disconnect();
             } catch (IOException e) {
                 e.printStackTrace();
-                // Handle API call error
             }
         }).start();
     }
 
 
-    private List<String> selectedItemsList = new ArrayList<>();
+    private List<String> selectedItemsList2 = new ArrayList<>();
 
     private Callback<ListView<UserStoriesData.DataItem>, ListCell<UserStoriesData.DataItem>> getCellFactory() {
         return param -> new ListCell<>() {
@@ -97,30 +92,13 @@ public class UserStoriesController {
                         if (newValue) {
                             // Handle item selection here (e.g., send it to the next stage)
                             System.out.println(item.getId() + " is selected");
-                            itemCheckBoxMap.put(item, checkBox);
+                            itemCheckBoxMap2.put(item, checkBox);
 
                             HttpRequest request = HttpRequest.newBuilder()
-                                    .uri(URI.create("http://localhost:8080/ProductBacklog/add"))
+                                    .uri(URI.create("http://localhost:8080/SprintBacklog/add"))
                                     .header("Content-Type", "application/json")
                                     .POST(HttpRequest.BodyPublishers.ofString("{\"id\":\"" + item.getId() + "\",\"bv\":\"" + item.getBvd() + "\"}"))
                                     .build();
-                            try {
-                                HttpClient client = HttpClient.newHttpClient();
-                                HttpResponse<String> response;
-                                response = client.send(request, HttpResponse.BodyHandlers.ofString());
-                                if (response.statusCode() == 200) {
-                                    // Successful login
-                                    // Show a success message
-                                    System.out.println("User Story added successfully");
-                                }
-                            }catch (IOException | InterruptedException e) {
-                                e.printStackTrace();
-                            }
-
-
-
-                            System.out.println(item.getId());
-                            System.out.println(item.getBvd());
                         }
                     });
 
@@ -131,28 +109,28 @@ public class UserStoriesController {
     }
 
     @FXML
-    private void openSelectedItems() {
-        List<UserStoriesData.DataItem> selectedItems = new ArrayList<>();
+    private void openCheckedItems() {
+        List<UserStoriesData.DataItem> checkedItems = new ArrayList<>();
 
-        for (UserStoriesData.DataItem item : itemCheckBoxMap.keySet()) {
+        for (UserStoriesData.DataItem item : itemCheckBoxMap2.keySet()) {
 
-            CheckBox checkBox = itemCheckBoxMap.get(item);
+            CheckBox checkBox = itemCheckBoxMap2.get(item);
             if (checkBox.isSelected()) {
-                selectedItems.add(item);
+                checkedItems.add(item);
             }
         }
 
         try {
             // Load the new stage from the FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectedItems-View.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectedItemsProductBacklog-View.fxml"));
             Parent root = loader.load();
             SelectedItemsController selectedItemsController = loader.getController();
 
             // Pass the selected items to the controller of the new stage
-            selectedItemsController.setSelectedItems(selectedItems);
+            selectedItemsController.setSelectedItems(checkedItems);
 
             Stage newStage = new Stage();
-            newStage.setTitle("Selected Items for Product Backlog");
+            newStage.setTitle("Selected Items for Sprint Backlog");
             newStage.setScene(new Scene(root));
             newStage.show();
         } catch (IOException e) {
@@ -162,3 +140,4 @@ public class UserStoriesController {
     }
 
 }
+

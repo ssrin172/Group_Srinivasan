@@ -6,7 +6,11 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="212.0" prefWidth="272.0" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
+<VBox alignment="CENTER"
+      prefHeight="212.0" prefWidth="272.0"
+      spacing="10"
+      xmlns:fx="http://javafx.com/fxml/1"
+      xmlns="http://javafx.com/javafx/21">
    <Label text="Product Owner"/>
    <TableView prefHeight="149.0" prefWidth="350.0">
      <columns>

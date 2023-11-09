@@ -6,6 +6,6 @@
 <?import javafx.scene.control.Button?>
 <VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10"
       fx:controller="com.group_srinivasan.scrumui.UserStoriesController">
-    <ListView fx:id="dataListView" />
+    <ListView fx:id="dataListView"/>
     <Button text="Add to Product Backlog" onAction="#openSelectedItems"/>
 </VBox>
