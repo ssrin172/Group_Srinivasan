@@ -15,7 +15,7 @@ public class SprintVariablesBacklogController {
     private SprintVariablesBacklogService sprintVariablesBacklogService;
     @PostMapping("/add")
     public String add(@RequestBody SprintVariablesBacklog sprintVariablesBacklog){
-        SprintVariablesBacklogService.saveSprintVariablesBacklog(sprintVariablesBacklog);
+        sprintVariablesBacklogService.saveSprintVariablesBacklog(sprintVariablesBacklog);
         return "New User Story added to SprintVariables Backlog";
     }
 

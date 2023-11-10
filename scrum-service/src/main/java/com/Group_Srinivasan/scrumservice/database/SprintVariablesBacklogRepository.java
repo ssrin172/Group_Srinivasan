@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SprintVariablesBacklogRepository extends JpaRepository<ProductBacklog, Integer> {
+public interface SprintVariablesBacklogRepository extends JpaRepository<SprintVariablesBacklog, Integer> {
 
 }
 
