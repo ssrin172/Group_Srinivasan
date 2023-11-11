@@ -8,4 +8,6 @@ public interface SprintBacklogService {
     public List<SprintBacklog> getAllSprintBacklog();
 
     public void deleteAllSprintBacklog();
+
+    public SprintBacklog updateSprintBacklog(SprintBacklog sprintBacklog);
 }

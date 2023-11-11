@@ -25,4 +25,9 @@ public class SprintBacklogServiceImp implements SprintBacklogService{
     public void deleteAllSprintBacklog() {
         sprintBacklogRepository.deleteAll();
     }
+
+    @Override
+    public SprintBacklog updateSprintBacklog(SprintBacklog sprintBacklog){
+        return sprintBacklogRepository.save(sprintBacklog);
+    }
 }

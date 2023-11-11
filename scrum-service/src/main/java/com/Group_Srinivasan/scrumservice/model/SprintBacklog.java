@@ -13,6 +13,15 @@ public class SprintBacklog {
 
     private int BV;
 
+    public int getStoryPoints() {
+        return storyPoints;
+    }
+
+    public void setStoryPoints(int storyPoints) {
+        this.storyPoints = storyPoints;
+    }
+
+    private int storyPoints;
     public SprintBacklog() {
     }
 
