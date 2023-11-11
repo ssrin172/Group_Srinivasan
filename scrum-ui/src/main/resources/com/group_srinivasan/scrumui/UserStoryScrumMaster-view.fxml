@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ListView?>
-
 <?import javafx.scene.control.Button?>
+
 <VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10"
-      fx:controller="com.group_srinivasan.scrumui.UserStoriesController">
-    <ListView fx:id="dataListView" />
-    <Button text="Open Selected Items" onAction="#openSelectedItems"/>
+      fx:controller="com.group_srinivasan.scrumui.UserStoryScrumMasterController">
+    <ListView fx:id="productBacklogListView"/>
+    <Button text="Add to Sprint Backlog" onAction="#openCheckedItems"/>
 </VBox>
