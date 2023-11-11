@@ -60,6 +60,27 @@ public class SelectedItemsSprintBacklogController {
             e.printStackTrace();
         }
     }
+    public void setSprintVariables(ActionEvent event){
+        String sprintLength = sprintLen.getText();
+        String numberOfSprint = noOfSprint.getText();
 
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/SprintVariablesBacklog/add"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString("{\"sprintLength\":\"" + sprintLength + "\",\"numberOfSprint\":\"" + numberOfSprint + "\"}"))
+                .build();
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpResponse<String> response;
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() == 200) {
+                // Successful login
+                // Show a success message
+                System.out.println("Sprint Variables added to the database.");
+            }
+        }catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     
 }
