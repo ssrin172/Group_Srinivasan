@@ -1,5 +1,7 @@
 package com.group_srinivasan.scrumui;
 
+import com.group_srinivasan.scrumui.SelectedItemsSprintBacklogController;
+import com.group_srinivasan.scrumui.UserStoriesData;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,11 +18,12 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.*;
 
 public class UserStoryScrumMasterController {
-
 
     @FXML
     private ListView<UserStoriesData.DataItem> productBacklogListView;
@@ -99,9 +102,21 @@ public class UserStoryScrumMasterController {
                                     .header("Content-Type", "application/json")
                                     .POST(HttpRequest.BodyPublishers.ofString("{\"id\":\"" + item.getId() + "\",\"bv\":\"" + item.getBvd() + "\"}"))
                                     .build();
+
+                            try {
+                                HttpClient client = HttpClient.newHttpClient();
+                                HttpResponse<String> response;
+                                response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                                if (response.statusCode() == 200) {
+                                    // Successful login
+                                    // Show a success message
+                                    System.out.println("User Story added to Sprint backlog successfully");
+                                }
+                            }catch (IOException | InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
                     });
-
                     setGraphic(checkBox);
                 }
             }
@@ -117,20 +132,22 @@ public class UserStoryScrumMasterController {
             CheckBox checkBox = itemCheckBoxMap2.get(item);
             if (checkBox.isSelected()) {
                 checkedItems.add(item);
+//                System.out.println("Item is checked");
             }
         }
 
         try {
             // Load the new stage from the FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectedItemsProductBacklog-View.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectedItemsSprintBacklog-view.fxml"));
             Parent root = loader.load();
-            SelectedItemsController selectedItemsController = loader.getController();
+
+            SelectedItemsSprintBacklogController checkedItemsController = loader.getController();
 
             // Pass the selected items to the controller of the new stage
-            selectedItemsController.setSelectedItems(checkedItems);
+            checkedItemsController.setCheckedItems(checkedItems);
 
             Stage newStage = new Stage();
-            newStage.setTitle("Selected Items for Sprint Backlog");
+            newStage.setTitle("Selected User Stories for Sprint Backlog");
             newStage.setScene(new Scene(root));
             newStage.show();
         } catch (IOException e) {
