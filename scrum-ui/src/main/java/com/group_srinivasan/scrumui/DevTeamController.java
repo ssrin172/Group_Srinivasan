@@ -36,6 +36,38 @@ public class DevTeamController {
         // Set the custom cell factory for the ListView
         sprintBacklogListView.setCellFactory(getCellFactory());
     }
+    private Callback<ListView<UserStoriesData.DataItem>, ListCell<UserStoriesData.DataItem>> getCellFactory() {
+        return param -> new ListCell<>() {
+            @Override
+            protected void updateItem(UserStoriesData.DataItem item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText("");
+                    setGraphic(null);
+                } else {
+                    setText(item.getId() + " - " + item.getBvd());
+
+                    // Create a TextField for story points
+                    TextField textField = new TextField();
+                    itemTextFieldMap.put(item, textField);
+
+                    // Create a Button for each data item
+                    Button updateButton = new Button("Update");
+                    itemButtonMap.put(item, updateButton);
+
+                    // Set an initial value if needed
+                    textField.setText(""); // Set your initial value here
+
+                    // Handle button click event
+                    updateButton.setOnAction(event -> handleUpdateButtonClick(item));
+
+                    // Set the graphic with TextField and Button
+                    HBox hbox = new HBox(textField, updateButton);
+                    setGraphic(hbox);
+                }
+            }
+        }
+    }
     private void handleUpdateButtonClick(UserStoriesData.DataItem item) {
         TextField textField = itemTextFieldMap.get(item);
         String textInput = textField.getText();
@@ -65,5 +97,6 @@ public class DevTeamController {
             }
         }
     }
+
     
 }
