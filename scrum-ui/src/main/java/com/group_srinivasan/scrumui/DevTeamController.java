@@ -23,5 +23,18 @@ import java.util.*;
 
 public class DevTeamController {
 
+    @FXML
+    private ListView<UserStoriesData.DataItem> sprintBacklogListView;
+
+    private Map<UserStoriesData.DataItem, TextField> itemTextFieldMap = new HashMap<>();
+    private Map<UserStoriesData.DataItem, Button> itemButtonMap = new HashMap<>();
+
+    public void initialize() {
+        // Call the API asynchronously to retrieve data
+        fetchDataFromApiAsync3();
+
+        // Set the custom cell factory for the ListView
+        sprintBacklogListView.setCellFactory(getCellFactory());
+    }
     
 }
