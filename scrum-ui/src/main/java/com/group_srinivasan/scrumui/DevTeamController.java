@@ -36,6 +36,34 @@ public class DevTeamController {
         // Set the custom cell factory for the ListView
         sprintBacklogListView.setCellFactory(getCellFactory());
     }
+
+    private void fetchDataFromApiAsync3() {
+        // Asynchronous data fetching logic (GET request)
+        new Thread(() -> {
+            try {
+                String apiUrl = "http://localhost:8080/SprintBacklog/getAll";
+                URL url = new URL(apiUrl);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                int responseCode = connection.getResponseCode();
+                if (responseCode == 200) {
+                    // If the request was successful, parse the JSON response
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    UserStoriesData.DataItem[] dataItems = objectMapper.readValue(connection.getInputStream(), UserStoriesData.DataItem[].class);
+                    List<UserStoriesData.DataItem> dataList = Arrays.asList(dataItems);
+
+                    // Update UI with retrieved data on the JavaFX Application Thread
+                    sprintBacklogListView.getItems().addAll(dataList);
+                } else {
+                    System.out.println("API request failed with response code: " + responseCode);
+                }
+
+                connection.disconnect();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
     private Callback<ListView<UserStoriesData.DataItem>, ListCell<UserStoriesData.DataItem>> getCellFactory() {
         return param -> new ListCell<>() {
             @Override
