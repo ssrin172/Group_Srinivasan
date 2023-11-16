@@ -36,5 +36,34 @@ public class DevTeamController {
         // Set the custom cell factory for the ListView
         sprintBacklogListView.setCellFactory(getCellFactory());
     }
+    private void handleUpdateButtonClick(UserStoriesData.DataItem item) {
+        TextField textField = itemTextFieldMap.get(item);
+        String textInput = textField.getText();
+
+        if (textField != null) {
+            // Get the entered story points from the TextField
+//            String storyPoints = textField.getText();
+
+            // Send an HTTP POST request to update the values in the database
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:8080/SprintBacklog/"+ item.getId()))
+                    .header("Content-Type", "application/json")
+                    .PUT(HttpRequest.BodyPublishers.ofString("{\"storyPoints\":\"" + Integer.parseInt(textInput) + "\",\"id\":\"" + item.getId() + "\",\"bv\":\"" + item.getBvd() + "\"}"))
+                    .build();
+            System.out.println(item.getStp());
+
+            try {
+                HttpClient client = HttpClient.newHttpClient();
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                if (response.statusCode() == 200) {
+                    // Successful update
+                    // Show a success message if needed
+                    System.out.println("Story Points updated for User Story with ID: " + item.getId());
+                }
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     
 }
