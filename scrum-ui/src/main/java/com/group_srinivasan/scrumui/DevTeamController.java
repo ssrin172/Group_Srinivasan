@@ -112,7 +112,7 @@ public class DevTeamController {
                     .header("Content-Type", "application/json")
                     .PUT(HttpRequest.BodyPublishers.ofString("{\"storyPoints\":\"" + Integer.parseInt(textInput) + "\",\"id\":\"" + item.getId() + "\",\"bv\":\"" + item.getBvd() + "\"}"))
                     .build();
-            System.out.println(item.getStp());
+           // System.out.println(item.getStp());
 
             try {
                 HttpClient client = HttpClient.newHttpClient();
