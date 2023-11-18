@@ -64,6 +64,7 @@ public class DevTeamController {
             }
         }).start();
     }
+
     private Callback<ListView<UserStoriesData.DataItem>, ListCell<UserStoriesData.DataItem>> getCellFactory() {
         return param -> new ListCell<>() {
             @Override
@@ -94,8 +95,9 @@ public class DevTeamController {
                     setGraphic(hbox);
                 }
             }
-        }
+        };
     }
+
     private void handleUpdateButtonClick(UserStoriesData.DataItem item) {
         TextField textField = itemTextFieldMap.get(item);
         String textInput = textField.getText();
@@ -125,6 +127,4 @@ public class DevTeamController {
             }
         }
     }
-
-    
 }
