@@ -12,7 +12,7 @@ public class RandomUserStoryBacklogServiceImp implements RandomUserStoryBacklogS
     @Autowired
     private RandomUserStoryBacklogRepository randomuserStoryBacklogRepository;
     @Override
-    public RandomUserStoryBacklog saveUserStory(RandomUserStoryBacklog RandomUserStory) {
+    public RandomUserStoryBacklog saveRandomUserStory(RandomUserStoryBacklog RandomUserStory) {
         return randomuserStoryBacklogRepository.save(RandomUserStory);
     }
 
@@ -20,6 +20,8 @@ public class RandomUserStoryBacklogServiceImp implements RandomUserStoryBacklogS
     public List<RandomUserStoryBacklog> getAllRandomUserStory() {
         return randomuserStoryBacklogRepository.findAll();
     }
+
+ 
 
     @Override
     public void deleteAllRandomUserStory() {

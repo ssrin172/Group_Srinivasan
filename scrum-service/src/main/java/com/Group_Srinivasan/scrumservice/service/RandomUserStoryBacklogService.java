@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface RandomUserStoryBacklogService {
 
-    public RandomUserStoryBacklog saveUserStory(RandomUserStoryBacklog RandomUserStory);
+    public RandomUserStoryBacklog saveRandomUserStory(RandomUserStoryBacklog RandomUserStory);
     public List<RandomUserStoryBacklog> getAllRandomUserStory();
 
-    public void deleteRandomAllUserStory();
+    public void deleteAllRandomUserStory();
 }

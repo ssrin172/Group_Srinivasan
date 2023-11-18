@@ -1,7 +1,6 @@
 package com.Group_Srinivasan.scrumservice.controller;
 
 
-import com.Group_Srinivasan.scrumservice.database.RandomUserStoryBacklogRepository;
 import com.Group_Srinivasan.scrumservice.model.RandomUserStoryBacklog;
 import com.Group_Srinivasan.scrumservice.service.RandomUserStoryBacklogService;
 import org.springframework.beans.factory.annotation.Autowired;

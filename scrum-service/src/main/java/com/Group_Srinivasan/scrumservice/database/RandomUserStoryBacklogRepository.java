@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RandomUserStoryBacklogRepository extends JpaRepository<UserStoryBacklog, Integer> {
+public interface RandomUserStoryBacklogRepository extends JpaRepository<RandomUserStoryBacklog, Integer> {
 
 }
 
