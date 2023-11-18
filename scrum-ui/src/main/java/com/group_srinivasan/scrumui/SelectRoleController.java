@@ -44,6 +44,20 @@ public class SelectRoleController {
                 e.printStackTrace();
             }
         }
+        else if( selectedRole.equals("Development Team")){
+            try {
+                //change the view.fxml file to the scrum master's GUI
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("DevelopmentTeam-view.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root, 400, 200);
+
+                stage.setScene(scene);
+                stage.setTitle("Select User Stories for Sprint Backlog");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         else if (selectedRole != null) {
             System.out.println("Selected Role: " + selectedRole);
         } else {

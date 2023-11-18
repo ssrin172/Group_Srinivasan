@@ -8,10 +8,13 @@ public class UserStoriesData {
     public static class DataItem {
         public final String id;
         public final String bvd;
+        public final String stp;
 
-        public DataItem(@JsonProperty("id") String id, @JsonProperty("bv") String bvd) {
+
+        public DataItem(@JsonProperty("id") String id, @JsonProperty("bv") String bvd, @JsonProperty("storyPoints") String stp) {
             this.id = id;
             this.bvd = bvd;
+            this.stp = stp;
         }
 
         public String getId() {
@@ -20,6 +23,9 @@ public class UserStoriesData {
 
         public String getBvd() {
             return bvd;
+        }
+        public String getStp() {
+            return stp;
         }
     }
 
