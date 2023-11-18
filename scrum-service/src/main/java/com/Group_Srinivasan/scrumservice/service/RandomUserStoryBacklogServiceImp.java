@@ -21,7 +21,7 @@ public class RandomUserStoryBacklogServiceImp implements RandomUserStoryBacklogS
         return randomuserStoryBacklogRepository.findAll();
     }
 
- 
+
 
     @Override
     public void deleteAllRandomUserStory() {
