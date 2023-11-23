@@ -12,4 +12,7 @@ public class StartSimulationController {
         return "Result for product owner";
     }
 
+    @GetMapping("/scrumMaster")
+    public String displayResultscrumMaster(){ return "Result for scrum master"; }
+
 }
