@@ -20,7 +20,6 @@ public class UserStoriesData {
         public String getId() {
             return id;
         }
-
         public String getBvd() {
             return bvd;
         }

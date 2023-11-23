@@ -11,8 +11,8 @@
       fx:controller="com.group_srinivasan.scrumui.SelectedItemsController">
     <Label text="Product Backlog" />
     <ListView fx:id="selectedItemsListView" />
-    <TextField  promptText="Enter sprint length" />
-    <TextField  promptText="Enter number of sprints" />
-    <Button text="Remove User Story" onAction="#setSelectedItems" />
-    <Button text="Add User Story to Sprint Backlog" onAction="#setSelectedItems" />
+<!--    <TextField  promptText="Enter sprint length" />-->
+<!--    <TextField  promptText="Enter number of sprints" />-->
+<!--    <Button text="Remove User Story" onAction="#setSelectedItems" />-->
+    <Button text="Back" onAction="#moveSelectRoles" />
 </VBox>

@@ -65,6 +65,25 @@ public class UserStoriesController {
                     // Update UI with retrieved data on the JavaFX Application Thread
                     dataListView.getItems().addAll(dataList);
 
+                    //Empty Product Backlog
+                    HttpRequest deleteRequest = HttpRequest.newBuilder()
+                            .uri(URI.create("http://localhost:8080/ProductBacklog/deleteAll"))
+                            .DELETE()
+                            .build();
+
+                    // Send the DELETE request
+                    try {
+                        HttpClient client = HttpClient.newHttpClient();
+                        HttpResponse<String> deleteResponse = client.send(deleteRequest, HttpResponse.BodyHandlers.ofString());
+                        if (deleteResponse.statusCode() == 200) {
+                            // Successful delete
+                            System.out.println("Delete Request is successful");
+                            // Now, send an HTTP POST request to add new values
+                        }
+                    } catch (IOException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                 } else {
                     // Handle API error response
                     System.out.println("API request failed with response code: " + responseCode);
