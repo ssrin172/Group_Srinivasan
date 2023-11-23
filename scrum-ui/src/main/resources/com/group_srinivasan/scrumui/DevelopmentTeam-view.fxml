@@ -11,5 +11,5 @@
 <VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10"
       fx:controller="com.group_srinivasan.scrumui.DevTeamController">
 <ListView fx:id="sprintBacklogListView"/>
-<!--<Button text="Update Story points" onAction="#updateItem"/>-->
+<Button text="Start Simulation"/>
 </VBox>
