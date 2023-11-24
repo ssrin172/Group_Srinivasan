@@ -10,6 +10,6 @@
 <!--</AnchorPane>-->
 <VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10"
       fx:controller="com.group_srinivasan.scrumui.DevTeamController">
-<ListView fx:id="sprintBacklogListView"/>
-<Button text="Start Simulation"/>
+    <ListView fx:id="sprintBacklogListView"/>
+    <Button text="Start Simulation" onAction="#startSimulation"/>
 </VBox>

@@ -15,4 +15,5 @@
 <!--    <TextField  promptText="Enter number of sprints" />-->
 <!--    <Button text="Remove User Story" onAction="#setSelectedItems" />-->
     <Button text="Back" onAction="#moveSelectRoles" />
+    <Button text="Start Simulation" onAction="#startSimulation"/>
 </VBox>

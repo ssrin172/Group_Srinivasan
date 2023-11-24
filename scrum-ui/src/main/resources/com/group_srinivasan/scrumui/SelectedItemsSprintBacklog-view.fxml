@@ -16,6 +16,7 @@
     <Label text="Enter number of sprints"/>
     <TextField fx:id="noOfSprint" promptText="Enter number of sprints" prefWidth="50" />
     <Button text="Set Sprint Variables" onAction="#setSprintVariables" />
-    <Button text="Start Simulation" onAction="#setCheckedItems" />
+<!--    <Button text="Start Simulation" onAction="#setCheckedItems" />-->
     <Button text="Back to Select Roles" onAction="#moveSelectRoles"/>
+    <Button text="Start Simulation" onAction="#startSimulation"/>
 </VBox>

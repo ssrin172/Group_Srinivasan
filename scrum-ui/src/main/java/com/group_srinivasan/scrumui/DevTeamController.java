@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -125,6 +126,42 @@ public class DevTeamController {
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void startSimulation(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("StartSimulationDevTeam-view.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root, 400, 200);
+
+            stage.setScene(scene);
+            stage.setTitle("Start Simulation");
+
+            try {
+                // Replace this with your actual API endpoint URL
+                String apiUrl = "http://localhost:8080/simulate/devTeam";
+                URL url = new URL(apiUrl);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                // Handle HTTP response codes, timeouts, etc.
+                int responseCode = connection.getResponseCode();
+                if (responseCode == 200) {
+                    System.out.println("Start Simulation Successful");
+                } else {
+                    // Handle API error response
+                    System.out.println("API request failed with response code: " + responseCode);
+                }
+
+                connection.disconnect();
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Handle API call error
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
