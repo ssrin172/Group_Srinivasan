@@ -10,4 +10,7 @@ public interface SprintBacklogService {
     public void deleteAllSprintBacklog();
 
     public SprintBacklog updateSprintBacklog(SprintBacklog sprintBacklog);
+
+    public SprintBacklog getById(int id);
+
 }

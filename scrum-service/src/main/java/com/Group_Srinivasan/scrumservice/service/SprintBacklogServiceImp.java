@@ -30,4 +30,18 @@ public class SprintBacklogServiceImp implements SprintBacklogService{
     public SprintBacklog updateSprintBacklog(SprintBacklog sprintBacklog){
         return sprintBacklogRepository.save(sprintBacklog);
     }
+
+    @Override
+    public SprintBacklog getById(int id) {
+        SprintBacklog tempSB = null;
+        try{
+            tempSB = sprintBacklogRepository.findById(id).orElseThrow(RuntimeException::new);
+            return tempSB;
+        }catch (Exception e){
+            System.out.println("Sorry could not find object by id in SPSI(sprint backlog service implementation)" + e);
+        }
+        return tempSB;
+    }
+
+
 }

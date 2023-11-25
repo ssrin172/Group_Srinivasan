@@ -1,11 +1,15 @@
 package com.Group_Srinivasan.scrumservice.controller;
 
+import com.Group_Srinivasan.scrumservice.database.SprintBacklogRepository;
+import com.Group_Srinivasan.scrumservice.database.UserStoryBacklogRepository;
 import com.Group_Srinivasan.scrumservice.model.ProductBacklog;
 import com.Group_Srinivasan.scrumservice.model.SprintBacklog;
 import com.Group_Srinivasan.scrumservice.model.SprintVariablesBacklog;
+import com.Group_Srinivasan.scrumservice.model.UserStoryBacklog;
 import com.Group_Srinivasan.scrumservice.service.ProductBacklogService;
 import com.Group_Srinivasan.scrumservice.service.SprintBacklogService;
 import com.Group_Srinivasan.scrumservice.service.SprintVariablesBacklogService;
+import com.Group_Srinivasan.scrumservice.service.UserStoryBacklogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,19 +24,17 @@ import java.util.Random;
 public class StartSimulationController {
 
     @Autowired
+    private SprintVariablesBacklogService sprintVariablesBacklogService;
+    @Autowired
     private ProductBacklogService productBacklogService;
 
     @Autowired
     private SprintBacklogService sprintBacklogService;
 
-    @Autowired
-    private SprintVariablesBacklogService sprintVariablesBacklogService;
 
     @GetMapping("/productOwner")
     public String displayResultProductOwner(){
 
-
-        // -------- automate scrum master
         List<ProductBacklog> pb = productBacklogService.getAllProductBacklog();
         int lenOfPB = pb.size();
 
@@ -53,7 +55,7 @@ public class StartSimulationController {
             pb.remove(temPB);
 
             sprintBacklogService.saveSprintBacklog(sp);
-            System.out.println(temPB.getID() + " " + temPB.getBV());
+            System.out.println("Scrum master\n" + temPB.getID() + " " + temPB.getBV());
         }
         //set sprint variables
 
@@ -64,17 +66,42 @@ public class StartSimulationController {
         sprintVariablesBacklogService.saveSprintVariablesBacklog(tempsvb);
 
 
-        // ------- automate developer ---------
+        // ------- automate dev Team ---------
 
 
-
-
+        // show actual results of sprints
 
         return "result for product owner";
     }
 
     @GetMapping("/scrumMaster")
-    public String displayResultScrumMaster(){ return "Result for scrum master"; }
+    public String displayResultScrumMaster(){
+        // automate the product owner
+        List<UserStoryBacklog> usb = userStoryBacklogService.getAllUserStory();
+        int lenOfUSB = usb.size();
+
+
+        Random random = new Random();
+        int lenOfPB = random.nextInt(1, 6);
+        System.out.println(lenOfPB);
+
+        for(int i = 0; i < lenOfPB; i++) {
+            ProductBacklog pb = new ProductBacklog();
+            // get random story every call and add it to sprint backlog
+
+            UserStoryBacklog tempUSB = usb.get(random.nextInt(0, usb.size()));
+            pb.setID(tempUSB.getID());
+            pb.setBV(tempUSB.getBV());
+
+            usb.remove(tempUSB);
+
+            productBacklogService.saveProductBacklog(pb);
+            System.out.println("Product owner\n" + tempUSB.getID() + " " + tempUSB.getBV());
+        }
+
+
+        return "Result for scrum master";
+    }
 
     @GetMapping("/devTeam")
     public String displayResultsDevTeam(){ return "Result for dev team";}
