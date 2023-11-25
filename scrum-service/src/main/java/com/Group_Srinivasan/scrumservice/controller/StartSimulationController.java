@@ -30,7 +30,11 @@ public class StartSimulationController {
 
     @Autowired
     private SprintBacklogService sprintBacklogService;
+    @Autowired
+    private SprintBacklogRepository sprintBacklogRepository;
 
+    @Autowired
+    UserStoryBacklogService userStoryBacklogService;
 
     @GetMapping("/productOwner")
     public String displayResultProductOwner(){
@@ -67,7 +71,17 @@ public class StartSimulationController {
 
 
         // ------- automate dev Team ---------
+        List<SprintBacklog> sb = sprintBacklogService.getAllSprintBacklog();
 
+        for(int j = 0; j < sb.size(); j++){
+            int id = sb.get(j).getID();
+            int bv = sb.get(j).getBV();
+            SprintBacklog currSprintBacklog = sprintBacklogService.getById(id);
+            currSprintBacklog.setBV(bv);
+            currSprintBacklog.setStoryPoints(random.nextInt(1,8));
+            sprintBacklogRepository.save(currSprintBacklog);
+            System.out.println("dev Team \n" + currSprintBacklog.getID() + " " + currSprintBacklog.getBV() + " " + currSprintBacklog.getStoryPoints());
+        }
 
         // show actual results of sprints
 
