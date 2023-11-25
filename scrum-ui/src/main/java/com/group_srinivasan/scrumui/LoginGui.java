@@ -18,6 +18,7 @@ public class LoginGui extends Application {
         primaryStage.setTitle("Login Page");
         primaryStage.setScene(scene);
         primaryStage.show();
+//        primaryStage.getScene().getRoot().setStyle("-fx-background-color: #336699;");
     }
 
     public static void main(String[] args) {
