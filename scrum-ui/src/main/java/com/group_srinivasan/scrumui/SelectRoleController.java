@@ -1,5 +1,6 @@
 package com.group_srinivasan.scrumui;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,10 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 
 public class SelectRoleController {
     @FXML
@@ -32,6 +37,24 @@ public class SelectRoleController {
             }
         }else if( selectedRole.equals("Scrum Master")){
             try {
+                // API Call from ScrumMaster
+                try {
+                    String apiUrl = "http://localhost:8080/simulate/scrumMasterSelection";
+                    URL url = new URL(apiUrl);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("GET");
+                    int responseCode = connection.getResponseCode();
+                    if (responseCode == 200) {
+                        // If the request was successful, parse the JSON response
+                        System.out.println("API call successful");
+                    } else {
+                        System.out.println("API request failed with response code: " + responseCode);
+                    }
+
+                    connection.disconnect();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 //change the view.fxml file to the scrum master's GUI
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("UserStoryScrumMaster-view.fxml"));
                 Parent root = loader.load();
@@ -46,7 +69,25 @@ public class SelectRoleController {
         }
         else if( selectedRole.equals("Development Team")){
             try {
-                //change the view.fxml file to the scrum master's GUI
+                // API Call from DevTeam to simulate the automatic simulation function
+                try {
+                    String apiUrl = "http://localhost:8080/simulate/devTeamSelection";
+                    URL url = new URL(apiUrl);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("GET");
+                    int responseCode = connection.getResponseCode();
+                    if (responseCode == 200) {
+                        // If the request was successful, parse the JSON response
+                        System.out.println("API call successful");
+                    } else {
+                        System.out.println("API request failed with response code: " + responseCode);
+                    }
+
+                    connection.disconnect();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                // change the view.fxml file to the scrum master's GUI
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("DevelopmentTeam-view.fxml"));
                 Parent root = loader.load();
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

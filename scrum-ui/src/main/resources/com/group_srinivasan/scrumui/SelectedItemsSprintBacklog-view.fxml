@@ -8,7 +8,8 @@
 
 <?import javafx.scene.text.Text?>
 <VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10"
-      fx:controller="com.group_srinivasan.scrumui.SelectedItemsSprintBacklogController">
+      fx:controller="com.group_srinivasan.scrumui.SelectedItemsSprintBacklogController"
+      style="-fx-background-color: #A0E9FF">
     <Label text="Sprint Backlog" />
     <ListView fx:id="checkedItemsListView" />
     <Label  text="Enter Sprint Length"/>
@@ -17,6 +18,6 @@
     <TextField fx:id="noOfSprint" promptText="Enter number of sprints" prefWidth="50" />
     <Button text="Set Sprint Variables" onAction="#setSprintVariables" />
 <!--    <Button text="Start Simulation" onAction="#setCheckedItems" />-->
-    <Button text="Back to Select Roles" onAction="#moveSelectRoles"/>
-    <Button text="Start Simulation" onAction="#startSimulation"/>
+    <Button text="Back to Select Roles" onAction="#moveSelectRoles" style="-fx-background-color: #00A9FF"/>
+    <Button text="Start Simulation" onAction="#startSimulation" style="-fx-background-color: #00A9FF"/>
 </VBox>

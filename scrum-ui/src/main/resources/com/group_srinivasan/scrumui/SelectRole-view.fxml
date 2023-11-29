@@ -8,7 +8,8 @@
 <BorderPane fx:controller="com.group_srinivasan.scrumui.SelectRoleController"
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="200.0" prefWidth="400.0"
-            xmlns="http://javafx.com/javafx/11">
+            xmlns="http://javafx.com/javafx/11"
+            style="-fx-background-color: #A0E9FF">
 <center>
     <VBox alignment="CENTER" spacing="10">
         <Label text="Select a role" style="-fx-font-size: 18px;"/>
@@ -21,7 +22,7 @@
                 </FXCollections>
             </items>
         </ComboBox>
-        <Button text="Select" onAction="#selectRole"/>
+        <Button text="Select" onAction="#selectRole" style="-fx-background-color: #00A9FF"/>
     </VBox>
 </center>
 </BorderPane>

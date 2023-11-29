@@ -5,7 +5,9 @@
 
 <?import javafx.scene.control.Button?>
 <VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10"
-      fx:controller="com.group_srinivasan.scrumui.UserStoriesController">
-    <ListView fx:id="dataListView"/>
-    <Button text="Add to Product Backlog" onAction="#openSelectedItems"/>
+      fx:controller="com.group_srinivasan.scrumui.UserStoriesController"
+      style="-fx-background-color: #A0E9FF">
+    <ListView fx:id="dataListView"
+              style="-fx-background-color: #A0E9FF"/>
+    <Button text="Add to Product Backlog" onAction="#openSelectedItems" style="-fx-background-color: #00A9FF"/>
 </VBox>
