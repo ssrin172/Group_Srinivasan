@@ -43,6 +43,7 @@ public class SprintBacklogController {
         currentsprintBacklog.setStoryPoints(sprintBacklog.getStoryPoints());
         currentsprintBacklog.setID(sprintBacklog.getID());
         currentsprintBacklog.setBV(sprintBacklog.getBV());
+        currentsprintBacklog.setCompleted(false);
         currentsprintBacklog = sprintBacklogRepository.save(sprintBacklog);
         return "Story points added to user story";
     }

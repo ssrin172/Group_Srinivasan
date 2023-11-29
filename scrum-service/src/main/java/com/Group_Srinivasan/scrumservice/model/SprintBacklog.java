@@ -13,6 +13,7 @@ public class SprintBacklog {
 
     private int BV;
 
+    private boolean completed;
     public int getStoryPoints() {
         return storyPoints;
     }
@@ -39,5 +40,13 @@ public class SprintBacklog {
 
     public void setBV(int BV) {
         this.BV = BV;
+    }
+
+    public boolean isCompleted() {
+        return this.completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }
