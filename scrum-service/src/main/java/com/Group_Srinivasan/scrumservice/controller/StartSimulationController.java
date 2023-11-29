@@ -106,7 +106,36 @@ public class StartSimulationController {
         }
     }
 
-    
+    public void automateScrumMaster(){
+        // ---------- automate scrum master -------------
+        List<ProductBacklog> pb = productBacklogService.getAllProductBacklog();
+        int lenOfPB = pb.size();
+        Random random = new Random();
+        int lenOfSP = random.nextInt(1, lenOfPB+1);
+        System.out.println(lenOfSP);
+
+        for(int i = 0; i < lenOfSP; i++) {
+            SprintBacklog sp = new SprintBacklog();
+            // get random story every call and add it to sprint backlog
+
+            ProductBacklog temPB = pb.get(random.nextInt(0, pb.size()));
+            sp.setID(temPB.getID());
+            sp.setBV(temPB.getBV());
+            sp.setStoryPoints(0);
+
+            pb.remove(temPB);
+
+            sprintBacklogService.saveSprintBacklog(sp);
+            System.out.println("Scrum master\n" + temPB.getID() + " " + temPB.getBV());
+        }
+        //set sprint variables
+
+        int sprintlength = random.nextInt(1, 6);
+        SprintVariablesBacklog tempsvb = new SprintVariablesBacklog();
+        tempsvb.setnumberOfSprint(random.nextInt(1, 6));
+        tempsvb.setsprintLength(random.nextInt(2,5));
+        sprintVariablesBacklogService.saveSprintVariablesBacklog(tempsvb);
+}
     public void automateDevTeam(){
         // ------- automate dev Team ---------
         List<SprintBacklog> sb = sprintBacklogService.getAllSprintBacklog();
