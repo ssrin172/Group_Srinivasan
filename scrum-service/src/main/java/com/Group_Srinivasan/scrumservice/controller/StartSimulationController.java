@@ -81,6 +81,30 @@ public class StartSimulationController {
 
 
     // -------------------- Automation functions --------------------
+    public void automateProductOwner(){
+        // automate the product owner
+        List<UserStoryBacklog> usb = userStoryBacklogService.getAllUserStory();
+        int lenOfUSB = usb.size();
+
+
+        Random random = new Random();
+        int lenOfPB = random.nextInt(1, 6);
+        System.out.println(lenOfPB);
+
+        for(int i = 0; i < lenOfPB; i++) {
+            ProductBacklog pb = new ProductBacklog();
+            // get random story every call and add it to sprint backlog
+
+            UserStoryBacklog tempUSB = usb.get(random.nextInt(0, usb.size()));
+            pb.setID(tempUSB.getID());
+            pb.setBV(tempUSB.getBV());
+
+            usb.remove(tempUSB);
+
+            productBacklogService.saveProductBacklog(pb);
+            System.out.println("Product owner\n" + tempUSB.getID() + " " + tempUSB.getBV());
+        }
+    }
 
     public void runSimulator(){
         // fetch user stories from sprint backlog.
