@@ -106,6 +106,23 @@ public class StartSimulationController {
         }
     }
 
+    
+    public void automateDevTeam(){
+        // ------- automate dev Team ---------
+        List<SprintBacklog> sb = sprintBacklogService.getAllSprintBacklog();
+        Random random = new Random();
+        for(int j = 0; j < sb.size(); j++){
+            int id = sb.get(j).getID();
+            int bv = sb.get(j).getBV();
+            SprintBacklog currSprintBacklog = sprintBacklogService.getById(id);
+            currSprintBacklog.setBV(bv);
+            currSprintBacklog.setStoryPoints(random.nextInt(1,8));
+            sprintBacklogRepository.save(currSprintBacklog);
+            System.out.println("dev Team \n" + currSprintBacklog.getID() + " " + currSprintBacklog.getBV() + " " + currSprintBacklog.getStoryPoints());
+        }
+
+    }
+
     public void runSimulator(){
         // fetch user stories from sprint backlog.
         List<SprintBacklog> sb = sprintBacklogService.getAllSprintBacklog();
