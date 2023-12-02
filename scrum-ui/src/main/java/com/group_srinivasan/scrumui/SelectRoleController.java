@@ -12,7 +12,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,6 +40,24 @@ public class SelectRoleController {
                 e.printStackTrace();
             }
         }else if( selectedRole.equals("Scrum Master")){
+            // Delete call for Product Backlog
+            HttpRequest deleteRequest = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:8080/ProductBacklog/deleteAll"))
+                    .DELETE()
+                    .build();
+
+            // Send the DELETE request
+            try {
+                HttpClient client = HttpClient.newHttpClient();
+                HttpResponse<String> deleteResponse = client.send(deleteRequest, HttpResponse.BodyHandlers.ofString());
+                if (deleteResponse.statusCode() == 200) {
+                    // Successful delete
+                    System.out.println("Delete Request is successful");
+                    // Now, send an HTTP POST request to add new values
+                }
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
             try {
                 // API Call from ScrumMaster
                 try {
@@ -68,6 +90,43 @@ public class SelectRoleController {
             }
         }
         else if( selectedRole.equals("Development Team")){
+            // Delete call for Product Backlog
+            HttpRequest deleteRequest = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:8080/ProductBacklog/deleteAll"))
+                    .DELETE()
+                    .build();
+
+            // Send the DELETE request
+            try {
+                HttpClient client = HttpClient.newHttpClient();
+                HttpResponse<String> deleteResponse = client.send(deleteRequest, HttpResponse.BodyHandlers.ofString());
+                if (deleteResponse.statusCode() == 200) {
+                    // Successful delete
+                    System.out.println("Delete Request is successful. Product Backlog is Empty");
+                    // Now, send an HTTP POST request to add new values
+                }
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // Delete call for Sprint Backlog
+            HttpRequest deleteRequest2 = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:8080/SprintBacklog/deleteAll"))
+                    .DELETE()
+                    .build();
+
+            // Send the DELETE request
+            try {
+                HttpClient client = HttpClient.newHttpClient();
+                HttpResponse<String> deleteResponse = client.send(deleteRequest2, HttpResponse.BodyHandlers.ofString());
+                if (deleteResponse.statusCode() == 200) {
+                    // Successful delete
+                    System.out.println("Delete Request is successful. Sprint Backlog is Empty");
+                    // Now, send an HTTP POST request to add new values
+                }
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
             try {
                 // API Call from DevTeam to simulate the automatic simulation function
                 try {
@@ -106,4 +165,3 @@ public class SelectRoleController {
         }
     }
 }
-

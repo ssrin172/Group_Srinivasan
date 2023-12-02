@@ -10,11 +10,14 @@ public class UserStoriesData {
         public final String bvd;
         public final String stp;
 
+        public final String completed;
 
-        public DataItem(@JsonProperty("id") String id, @JsonProperty("bv") String bvd, @JsonProperty("storyPoints") String stp) {
+
+        public DataItem(@JsonProperty("completed") String completed, @JsonProperty("id") String id, @JsonProperty("bv") String bvd, @JsonProperty("storyPoints") String stp) {
             this.id = id;
             this.bvd = bvd;
             this.stp = stp;
+            this.completed = completed;
         }
 
         public String getId() {
@@ -26,6 +29,10 @@ public class UserStoriesData {
         public String getStp() {
             return stp;
         }
+        public String getCompleted() {
+            return completed;
+        }
+
     }
 
     private final List<DataItem> data;
