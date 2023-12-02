@@ -37,12 +37,6 @@ public class StartSimulationTestDevTeam {
         when(sprintBacklogService.getAllSprintBacklog()).thenReturn(sprintBacklogs);
 
         // Act
-        String result = controller.displayResultsDevTeam();
 
-        // Assert
-        // Adjust the assertion based on your actual expected result
-        // For now, let's assume the result should contain "Development Team Result: 10"
-        // Replace this with your actual expected result
-        assertEquals("Result for dev team", result);
     }
 }

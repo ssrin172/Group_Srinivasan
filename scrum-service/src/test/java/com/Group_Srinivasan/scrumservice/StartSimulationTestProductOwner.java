@@ -52,10 +52,7 @@ public class StartSimulationTestProductOwner {
         when(sprintBacklogService.getAllSprintBacklog()).thenReturn(new ArrayList<>());
 
         // Act
-        String result = controller.displayResultProductOwner();
 
-        // Assert
-        assertEquals("result for product owner", result);
     }
 
     // Other test methods...

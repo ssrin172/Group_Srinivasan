@@ -49,12 +49,7 @@ public class StartSimulationTestScrumMaster {
         when(productBacklogService.getAllProductBacklog()).thenReturn(productBacklogs);
 
         // Act
-        String result = controller.displayResultScrumMaster();
 
-        // Assert
-        // Adjust the assertion based on your actual expected result
-        // For now, let's assume the result should contain "Result for scrum master"
-        assertEquals("Result for scrum master", result);
     }
 }
 

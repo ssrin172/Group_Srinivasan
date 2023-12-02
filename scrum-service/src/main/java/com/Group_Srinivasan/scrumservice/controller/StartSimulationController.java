@@ -10,11 +10,13 @@ import com.Group_Srinivasan.scrumservice.service.SprintBacklogService;
 import com.Group_Srinivasan.scrumservice.service.SprintVariablesBacklogService;
 import com.Group_Srinivasan.scrumservice.service.UserStoryBacklogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Random;
+
 
 @RestController
 @RequestMapping("/simulate")
@@ -35,31 +37,33 @@ public class StartSimulationController {
 
     // -------------------- start simulations for each roles --------------------
     @GetMapping("/productOwner")
-    public String displayResultProductOwner(){
+    public ResponseEntity<List<SprintBacklog>> displayResultProductOwner(){
 
         automateScrumMaster();
         automateDevTeam();
 
         // show actual results of sprints
-        runSimulator();
+        List<SprintBacklog> result = runSimulator();
 
-        return "result for product owner";
+
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/scrumMaster")
-    public String displayResultScrumMaster(){
+    public ResponseEntity<List<SprintBacklog>> displayResultScrumMaster(){
 
         automateDevTeam();
 
-        runSimulator();
+        List<SprintBacklog> result = runSimulator();
 
-        return "Result of simulation as a scrum Master";
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/devTeam")
-    public String displayResultsDevTeam(){
-        runSimulator();
-        return "simulation results for dev Team";
+    public ResponseEntity<List<SprintBacklog>> displayResultsDevTeam(){
+
+        List<SprintBacklog> result =  runSimulator();
+        return ResponseEntity.ok(result);
     }
 
 
@@ -111,7 +115,7 @@ public class StartSimulationController {
         List<ProductBacklog> pb = productBacklogService.getAllProductBacklog();
         int lenOfPB = pb.size();
         Random random = new Random();
-        int lenOfSP = random.nextInt(1, lenOfPB+1);
+        int lenOfSP = random.nextInt(3, lenOfPB+1);
         System.out.println(lenOfSP);
 
         for(int i = 0; i < lenOfSP; i++) {
@@ -133,9 +137,9 @@ public class StartSimulationController {
         int sprintlength = random.nextInt(1, 6);
         SprintVariablesBacklog tempsvb = new SprintVariablesBacklog();
         tempsvb.setnumberOfSprint(random.nextInt(1, 6));
-        tempsvb.setsprintLength(random.nextInt(2,5));
+        tempsvb.setsprintLength(random.nextInt(4,8));
         sprintVariablesBacklogService.saveSprintVariablesBacklog(tempsvb);
-}
+    }
     public void automateDevTeam(){
         // ------- automate dev Team ---------
         List<SprintBacklog> sb = sprintBacklogService.getAllSprintBacklog();
@@ -154,7 +158,7 @@ public class StartSimulationController {
 
     }
 
-    public void runSimulator(){
+    public List<SprintBacklog> runSimulator(){
         // fetch user stories from sprint backlog.
         List<SprintBacklog> sb = sprintBacklogService.getAllSprintBacklog();
 
@@ -192,6 +196,8 @@ public class StartSimulationController {
             System.out.println("Die Value : " + dieValue);
             System.out.println("Roll # " + rolls);
             System.out.println("ID\t\t" + "BV\t\t" + "StoryPoints\t\t" + "Completed") ;
+
+
             for(int i =0; i< sb.size(); i++)
             {
                 SprintBacklog temp = sb.get(i);
@@ -199,18 +205,14 @@ public class StartSimulationController {
 
             }
 
+
             if(rolls >= length || index == sb.size() ){
                 break;
             }
 
-
-
         }
 
-
-
-
-
+        return sb;
 
         // roll a die (1-6 inclusive)
         // die value is story points completed.
