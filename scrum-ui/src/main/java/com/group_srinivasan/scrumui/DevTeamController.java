@@ -12,6 +12,10 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
+import java.net.HttpURLConnection;
+import java.io.IOException;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -129,36 +133,33 @@ public class DevTeamController {
         }
     }
 
-    public void startSimulation(ActionEvent event) {
+
+    @FXML
+    private void startSimulation(ActionEvent event) {
         try {
+            // Replace this with your actual API endpoint URL
+            String apiUrl = "http://localhost:8080/simulate/devTeam";
+
+            // Your existing code for making the GET call can go here
+
+            // Assuming you get some data from the GET call
+            String responseData = "Simulation Results";
+
+            // Load the StartSimulationDevTeam-view.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("StartSimulationDevTeam-view.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root, 400, 200);
 
-            stage.setScene(scene);
+            // Access the controller of the next window
+            StartSimulationDevTeamController nextWindowController = loader.getController();
+
+            // Pass the response data to the next window controller
+            nextWindowController.setResult(responseData);
+
+            // Show the next window
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root, 400, 200));
             stage.setTitle("Start Simulation");
-
-            try {
-                // Replace this with your actual API endpoint URL
-                String apiUrl = "http://localhost:8080/simulate/devTeam";
-                URL url = new URL(apiUrl);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
-                // Handle HTTP response codes, timeouts, etc.
-                int responseCode = connection.getResponseCode();
-                if (responseCode == 200) {
-                    System.out.println("Start Simulation Successful");
-                } else {
-                    // Handle API error response
-                    System.out.println("API request failed with response code: " + responseCode);
-                }
-
-                connection.disconnect();
-            } catch (IOException e) {
-                e.printStackTrace();
-                // Handle API call error
-            }
+            stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
