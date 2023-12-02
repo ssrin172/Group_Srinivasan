@@ -49,7 +49,6 @@ public class StartSimulationTestScrumMaster {
         when(productBacklogService.getAllProductBacklog()).thenReturn(productBacklogs);
 
         // Act
-
     }
 }
 
