@@ -88,7 +88,7 @@ public class StartSimulationController {
 
 
         Random random = new Random();
-        int lenOfPB = random.nextInt(1, 6);
+        int lenOfPB = random.nextInt(3, lenOfUSB);
         System.out.println(lenOfPB);
 
         for(int i = 0; i < lenOfPB; i++) {
@@ -166,14 +166,23 @@ public class StartSimulationController {
         int rolls = 0;
 
 
+        System.out.println("ID\t\t" + "BV\t\t" + "StoryPoints\t\t" + "Completed") ;
+        for(int i =0; i< sb.size(); i++)
+        {
+            SprintBacklog temp = sb.get(i);
+            System.out.println(temp.getID() + "\t\t" + temp.getBV() + "\t\t\t" + temp.getStoryPoints() + "\t\t" + temp.isCompleted());
+        }
 
         while(true){
+
+
             Random random = new Random();
             int dieValue = random.nextInt(1,7);
             rolls++;
             SprintBacklog currentStory = sb.get(index);
             currentStory.setStoryPoints(currentStory.getStoryPoints() - dieValue) ;
             if(currentStory.getStoryPoints() <= 0){
+                currentStory.setStoryPoints(0);
                 currentStory.setCompleted(true);
                 index ++;
             }
@@ -181,8 +190,8 @@ public class StartSimulationController {
 
 
             System.out.println("Die Value : " + dieValue);
-            System.out.println("Sorint # " + index);
-            System.out.println("ID\t\t" + "BV\t\t" + "StoryPoints\t\t" + "Completed" + "\t\tDie Value") ;
+            System.out.println("Roll # " + rolls);
+            System.out.println("ID\t\t" + "BV\t\t" + "StoryPoints\t\t" + "Completed") ;
 
             for(int i =0; i< sb.size(); i++)
             {
@@ -193,6 +202,9 @@ public class StartSimulationController {
             if(rolls >= length || index == sb.size() ){
                 break;
             }
+
+
+
         }
 
 
