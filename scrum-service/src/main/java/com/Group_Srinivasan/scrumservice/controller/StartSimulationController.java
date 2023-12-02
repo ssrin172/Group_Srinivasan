@@ -197,12 +197,7 @@ public class StartSimulationController {
             {
                 SprintBacklog temp = sb.get(i);
                 System.out.println(temp.getID() + "\t\t" + temp.getBV() + "\t\t\t" + temp.getStoryPoints() + "\t\t" + temp.isCompleted());
-                currentsprintBacklog = sprintBacklogRepository.findById(temp.getID()).orElseThrow(RuntimeException::new);
-                currentsprintBacklog.setStoryPoints(temp.getStoryPoints());
-                currentsprintBacklog.setID(temp.getID());
-                currentsprintBacklog.setBV(temp.getBV());
-                currentsprintBacklog.setCompleted(false);
-                currentsprintBacklog = sprintBacklogRepository.save(temp);
+               
             }
 
             if(rolls >= length || index == sb.size() ){
