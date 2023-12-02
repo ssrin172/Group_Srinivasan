@@ -192,12 +192,11 @@ public class StartSimulationController {
             System.out.println("Die Value : " + dieValue);
             System.out.println("Roll # " + rolls);
             System.out.println("ID\t\t" + "BV\t\t" + "StoryPoints\t\t" + "Completed") ;
-            SprintBacklog currentsprintBacklog;
             for(int i =0; i< sb.size(); i++)
             {
                 SprintBacklog temp = sb.get(i);
                 System.out.println(temp.getID() + "\t\t" + temp.getBV() + "\t\t\t" + temp.getStoryPoints() + "\t\t" + temp.isCompleted());
-               
+
             }
 
             if(rolls >= length || index == sb.size() ){
