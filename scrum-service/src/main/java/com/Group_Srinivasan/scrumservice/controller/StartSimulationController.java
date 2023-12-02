@@ -143,11 +143,13 @@ public class StartSimulationController {
         for(int j = 0; j < sb.size(); j++){
             int id = sb.get(j).getID();
             int bv = sb.get(j).getBV();
+
             SprintBacklog currSprintBacklog = sprintBacklogService.getById(id);
             currSprintBacklog.setBV(bv);
             currSprintBacklog.setStoryPoints(random.nextInt(1,8));
+            currSprintBacklog.setCompleted(false);
             sprintBacklogRepository.save(currSprintBacklog);
-            System.out.println("dev Team \n" + currSprintBacklog.getID() + " " + currSprintBacklog.getBV() + " " + currSprintBacklog.getStoryPoints());
+            System.out.println("dev Team \n" + currSprintBacklog.getID() + " " + currSprintBacklog.getBV() + " " + currSprintBacklog.getStoryPoints() + " " + currSprintBacklog.isCompleted());
         }
 
     }
@@ -176,16 +178,23 @@ public class StartSimulationController {
                 index ++;
             }
 
+
+
+            System.out.println("Die Value : " + dieValue);
+            System.out.println("Sorint # " + index);
+            System.out.println("ID\t\t" + "BV\t\t" + "StoryPoints\t\t" + "Completed" + "\t\tDie Value") ;
+
+            for(int i =0; i< sb.size(); i++)
+            {
+                SprintBacklog temp = sb.get(i);
+                System.out.println(temp.getID() + "\t\t" + temp.getBV() + "\t\t\t" + temp.getStoryPoints() + "\t\t" + temp.isCompleted());
+            }
+
             if(rolls >= length || index == sb.size() ){
                 break;
             }
         }
-        for(int i =0; i< sb.size(); i++)
-        {
-            SprintBacklog temp = sb.get(i);
-            System.out.println("ID\t\t" + "BV\t\t" + "StoryPoints\t\t" + "Completed");
-            System.out.println(temp.getID() + "\t\t" + temp.getBV() + "\t\t\t" + temp.getStoryPoints() + "\t\t\t\t" + temp.isCompleted());
-        }
+
 
 
 
