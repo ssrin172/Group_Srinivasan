@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<!--<?import javafx.scene.text.*?>-->
+
+<BorderPane prefHeight="226.0" prefWidth="280.0" style="-fx-background-color: #A0E9FF" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group_srinivasan.scrumui.LoginGuiController">
+    <center>
+        <VBox alignment="CENTER" prefHeight="311.0" prefWidth="389.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="User Sign-Up">
+               <font>
+                  <Font size="30.0" />
+               </font></Label>
+                <TextField fx:id="usernameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Username" />
+                <PasswordField fx:id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Password" />
+                <!-- "promptText" displays text when there is nothing on the screen, and it tells what to enter -->
+                <Button onAction="#loginButtonAction" text="Sign Up" style="-fx-background-color: #00A9FF" />
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

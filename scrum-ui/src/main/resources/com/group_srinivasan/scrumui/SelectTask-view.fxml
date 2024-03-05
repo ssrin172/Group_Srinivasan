@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:controller="com.group_srinivasan.scrumui.SelectTaskController"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="200.0" prefWidth="400.0"
+            xmlns="http://javafx.com/javafx/11"
+            style="-fx-background-color: #A0E9FF">
+<center>
+    <VBox alignment="CENTER" spacing="10">
+        <Label text="Select a task" style="-fx-font-size: 18px;"/>
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Scrum Simulator" onAction="#openScrumSimulator" style="-fx-background-color: #00A9FF"/>
+            <Button text="Scrum Gameplay" onAction="#openScrumGameplay" style="-fx-background-color: #00A9FF"/>
+        </HBox>
+    </VBox>
+</center>
+</BorderPane>

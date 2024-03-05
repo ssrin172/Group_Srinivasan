@@ -1,0 +1,31 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+
+<!--<?import javafx.scene.control.*?>-->
+<!--<?import javafx.scene.layout.*?>-->
+
+<!--<?import javafx.scene.control.cell.PropertyValueFactory?>-->
+<!--<BorderPane xmlns:fx="http://javafx.com/fxml"-->
+<!--            fx:controller="com.group_srinivasan.scrumui.ProductOwnerController">-->
+<!--    <center>-->
+<!--        <TableView fx:id="userStoryTable" prefWidth="600" prefHeight="400">-->
+<!--            <columns>-->
+<!--                <TableColumn text="Select">-->
+<!--                    <cellValueFactory><PropertyValueFactory property="selected" /></cellValueFactory>-->
+<!--                    <cellFactory>-->
+<!--&lt;!&ndash;                        <CheckBoxTableCell fx:factory="forTableColumn" />&ndash;&gt;-->
+<!--                    </cellFactory>-->
+<!--                </TableColumn>-->
+<!--                <TableColumn text="User Story ID">-->
+<!--                    <cellValueFactory><PropertyValueFactory property="userStoryID" /></cellValueFactory>-->
+<!--                </TableColumn>-->
+<!--                <TableColumn text="Business Value">-->
+<!--                    <cellValueFactory><PropertyValueFactory property="businessValue" /></cellValueFactory>-->
+<!--                </TableColumn>-->
+<!--            </columns>-->
+<!--        </TableView>-->
+<!--    </center>-->
+<!--    <bottom>-->
+<!--        <Button text="Add to Product Backlog" onAction="#addToProductBacklog" />-->
+<!--        <Button text="Start Simulation"/>-->
+<!--    </bottom>-->
+<!--</BorderPane>-->

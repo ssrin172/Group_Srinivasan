@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.fxml.FXML?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.group_srinivasan.scrumui.StartSimulationDevTeamController"
+            prefHeight="400.0" prefWidth="600.0"
+>
+
+    <TextArea fx:id="resultTextArea" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0"/>
+
+    <!-- Add other UI elements as needed -->
+
+</AnchorPane>

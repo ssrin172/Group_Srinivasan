@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.text.Text?>
+<VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10"
+      fx:controller="com.group_srinivasan.scrumui.SelectedItemsSprintBacklogController"
+      style="-fx-background-color: #A0E9FF">
+    <Label text="Sprint Backlog" />
+    <ListView fx:id="checkedItemsListView" />
+    <Label  text="Enter Sprint Length"/>
+    <TextField fx:id="sprintLen" promptText="Enter sprint length" prefWidth="50"/>
+    <Label text="Enter number of sprints"/>
+    <TextField fx:id="noOfSprint" promptText="Enter number of sprints" prefWidth="50" />
+    <Button text="Set Sprint Variables" onAction="#setSprintVariables" />
+<!--    <Button text="Start Simulation" onAction="#setCheckedItems" />-->
+    <Button text="Back to Select Roles" onAction="#moveSelectRoles" style="-fx-background-color: #00A9FF"/>
+    <Button text="Start Simulation" onAction="#startSimulation" style="-fx-background-color: #00A9FF"/>
+</VBox>

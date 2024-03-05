@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+<?import javafx.scene.control.ListView?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10"
+      fx:controller="com.group_srinivasan.scrumui.SelectedItemsController">
+    <Label text="Product Backlog" />
+    <ListView fx:id="selectedItemsListView" />
+<!--    <TextField  promptText="Enter sprint length" />-->
+<!--    <TextField  promptText="Enter number of sprints" />-->
+<!--    <Button text="Remove User Story" onAction="#setSelectedItems" />-->
+    <Button text="Back" onAction="#moveSelectRoles" />
+    <Button text="Start Simulation" onAction="#startSimulation"/>
+</VBox>

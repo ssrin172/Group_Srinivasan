@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ListView?>
+
+<?import javafx.scene.control.Button?>
+<VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10"
+      fx:controller="com.group_srinivasan.scrumui.UserStoriesController"
+      style="-fx-background-color: #A0E9FF">
+    <ListView fx:id="dataListView"
+              style="-fx-background-color: #A0E9FF"/>
+    <Button text="Add to Product Backlog" onAction="#openSelectedItems" style="-fx-background-color: #00A9FF"/>
+</VBox>
